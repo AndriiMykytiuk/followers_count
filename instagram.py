@@ -5,7 +5,7 @@ import os
 class Instagram:
     def __init__(self):
         self.instaloader = Instaloader()
-        self.instaloader.login(os.getenv('INSTAGRAM_LOGIN'), os.getenv('INSTAGRAM_PASS'))
+        self.instaloader.login('andrii_garden_experience', 'baxVOtU33z4$')
 
     def get_followers(self, username):
         try:
