@@ -1,11 +1,11 @@
 from instaloader import Instaloader, Profile
-from decouple import config
+import os
 
 
 class Instagram:
     def __init__(self):
         self.instaloader = Instaloader()
-        self.instaloader.login(config('INSTAGRAM_LOGIN'), config('INSTAGRAM_PASS'))
+        self.instaloader.login(os.getenv('INSTAGRAM_LOGIN'), os.getenv('INSTAGRAM_PASS'))
 
     def get_followers(self, username):
         try:
