@@ -4,7 +4,6 @@ import json
 from decouple import config
 from instagram import Instagram
 from tiktok import TikTok
-from twitch import Twitch
 
 
 class SocialMedia(BaseModel):
