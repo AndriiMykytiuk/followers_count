@@ -15,7 +15,6 @@ app = FastAPI()
 
 @app.post("/")
 async def get_followers_count(social_media: SocialMedia):
-    followers = None
     if social_media.name == 'instagram':
         ...
     #     insta = Instagram()
