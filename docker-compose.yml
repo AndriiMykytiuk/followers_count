@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    hostname: chrome
+    ports:
+      - "5900:5900"
+      - "4444:4444"
+    privileged: true
+    shm_size: 1g
+
   web:
     environment:
       - SECRET=${SECRET}
@@ -9,4 +18,3 @@ services:
       - .:/app
     ports:
       - 8000:8000
-    shm_size: 1gb
