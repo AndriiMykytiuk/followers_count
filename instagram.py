@@ -1,24 +1,18 @@
-#importing the libraries
-import requests
-from bs4 import BeautifulSoup
+from instaloader import Instaloader, Profile
+from decouple import config
 
 
-#creating function to scrap information
-def InstaScrap(user):
-    #url.format(urlObj) is the built in API provided by uRL class,which takes an object or string and return a formatted string
-    #derived from that object or string and if urlObj not found then it throws an error.
-    url = "https://www.instagram.com/{}".format(user)
+class Instagram:
+    def __init__(self):
+        USERNAME = "andrii_garden_experience"
+        self.instaloader = Instaloader()
+        self.instaloader.load_session_from_file(USERNAME, filename='session-andrii_garden_experience')
 
-    # creating 'r' as an object that will hold the recieved data from http request.
-    r = requests.get(url)
-    #Code for Parsing the r.text to the BeautifulSoup and storing it into python object "bs".
-    bs = BeautifulSoup(r.text ,"html.parser")
-    #holding the title of bs
-    title=bs.title
-    #use of 'FIND' method to get the details.
-    rep = bs.find('meta',property ='og:description').attrs["content"]
-    #print the text content of 'title' element.
-    #returning parse(rep)
-    print(rep.split('Followers,'))
+    def get_followers(self, username):
+        try:
+            profile = Profile.from_username(self.instaloader.context, username)
+            return profile.followers
+        except:
+            return None
 
-InstaScrap('stepanets_kir')
+
