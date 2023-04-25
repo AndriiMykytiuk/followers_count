@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from fastapi import FastAPI, Response, HTTPException
 import json
-
+from decouple import config
 from instagram import Instagram
 from tiktok import TikTok
 
@@ -9,6 +9,7 @@ from tiktok import TikTok
 class SocialMedia(BaseModel):
     name: str
     username: str
+    secret: str
 
 
 app = FastAPI()
@@ -16,6 +17,9 @@ app = FastAPI()
 
 @app.post("/")
 async def get_followers_count(social_media: SocialMedia):
+    if social_media.secret != config("SECRET"):
+        raise HTTPException(status_code=401, detail="unauthorized_access")
+
     if social_media.name == 'instagram':
         insta = Instagram()
         followers = insta.get_followers(social_media.username)
@@ -38,3 +42,5 @@ async def get_followers_count(social_media: SocialMedia):
             return Response(content=json_str, media_type='application/json')
         else:
             raise HTTPException(status_code=404, detail="user_not_found")
+
+
