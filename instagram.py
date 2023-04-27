@@ -1,5 +1,4 @@
 from instaloader import Instaloader, Profile
-from decouple import config
 
 
 class Instagram:
