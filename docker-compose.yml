@@ -4,7 +4,6 @@ services:
   web:
     build: .
     environment:
-      SECRET: ${SECRET}
       PORT: 8000
     ports:
       - '8000:8000'
