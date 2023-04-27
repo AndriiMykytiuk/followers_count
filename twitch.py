@@ -27,5 +27,6 @@ class Twitch:
             return followers.text.replace(' followers', '')
         except TimeoutException:
             return False
-
+        finally:
+            self.driver.quit()
 
