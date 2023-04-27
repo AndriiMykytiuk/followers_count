@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
@@ -6,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class Twitch:
+class Twitter:
     def __init__(self):
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
@@ -20,14 +22,13 @@ class Twitch:
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
     def get_followers_count(self, username):
-        url = f"https://www.twitch.tv/{username}"
+        url = f"https://www.twitter.com/{username}"
         self.driver.get(url)
         wait = WebDriverWait(self.driver, 25)
         try:
-            followers = wait.until(EC.presence_of_element_located((By.XPATH, '//p[contains(text(), "followers")]')))
-            return followers.text.replace(' followers', '')
+            followers = wait.until(EC.visibility_of_element_located((By.XPATH, f'//a[contains(@href, "{username}/followers")]/span/span')))
+            return followers.text
         except TimeoutException:
             return False
         finally:
             self.driver.quit()
-

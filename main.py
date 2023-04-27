@@ -5,6 +5,7 @@ from decouple import config
 from instagram import Instagram
 from tiktok import TikTok
 from twitch import Twitch
+from twitter import Twitter
 
 
 class SocialMedia(BaseModel):
@@ -46,6 +47,17 @@ async def get_followers_count(social_media: SocialMedia):
     elif social_media.name == 'twitch':
         twitch = Twitch()
         followers = twitch.get_followers_count(social_media.username)
+        if followers:
+            data = {'username': social_media.username,
+                    'name': social_media.name,
+                    'followers': followers}
+            json_str = json.dumps(data, indent=4, default=str)
+            return Response(content=json_str, media_type='application/json')
+        else:
+            raise HTTPException(status_code=404, detail="user_not_found")
+    elif social_media.name == 'twitter':
+        twitter = Twitter()
+        followers = twitter.get_followers_count(social_media.username)
         if followers:
             data = {'username': social_media.username,
                     'name': social_media.name,
