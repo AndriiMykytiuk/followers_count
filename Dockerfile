@@ -15,6 +15,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install dependencies
+RUN yum install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+COPY --from=build /opt/headless-chromium /opt/
+COPY --from=build /opt/chromedriver /opt/
+
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
