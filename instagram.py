@@ -14,5 +14,3 @@ class Instagram:
             return profile.followers
         except:
             return None
-
-

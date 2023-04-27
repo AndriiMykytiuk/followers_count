@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  web:
-    environment:
-      - SECRET=${SECRET}
+  api:
     build: .
-    volumes:
-      - .:/app
+    environment:
+      SECRET: ${SECRET}
+      PORT: 8000
     ports:
-      - 8000:8000
+      - '8000:8000'
+    restart: "no"
