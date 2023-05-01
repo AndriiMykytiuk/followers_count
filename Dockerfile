@@ -13,7 +13,7 @@ WORKDIR /app
 # set env variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV SECRET  ${SECRET}
+
 
 # install dependencies
 # install google chrome

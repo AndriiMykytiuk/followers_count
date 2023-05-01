@@ -1,3 +1,7 @@
+from pprint import pprint
+
+from bs4 import BeautifulSoup
+import requests
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
@@ -23,10 +27,13 @@ class Twitch:
         self.driver.get(url)
         wait = WebDriverWait(self.driver, 25)
         try:
-            followers = wait.until(EC.presence_of_element_located((By.XPATH, '//p[contains(text(), "followers")]')))
+            followers = wait.until(EC.presence_of_element_located((By.XPATH, '//p[contains(text(), "followers")] | //div[contains(text(), "followers")]/span')))
             return followers.text.replace(' followers', '')
         except TimeoutException:
             return False
         finally:
             self.driver.quit()
 
+
+# t = Twitch()
+# print(t.get_followers_count('potatiuwu'))

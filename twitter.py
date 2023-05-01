@@ -1,5 +1,7 @@
 from pprint import pprint
 
+from bs4 import BeautifulSoup
+import requests
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager

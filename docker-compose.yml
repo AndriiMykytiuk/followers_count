@@ -5,6 +5,7 @@ services:
     build: .
     environment:
       PORT: 8000
+      SECRET: ${SECRET}
     ports:
       - '8000:8000'
-    restart: "no"
+    restart: 'on-failure'
