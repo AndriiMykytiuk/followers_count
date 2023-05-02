@@ -2,6 +2,9 @@
 
 Docker, Python 3.7, FastAPI, Docker, Selenium, requests
 
+# Supported platforms:
+Instagram, TikTok, Twitch, Twitter
+
 ## Installation
 
 Log in to Instagram with Firefox and export the cookies: https://instaloader.github.io/troubleshooting.html
