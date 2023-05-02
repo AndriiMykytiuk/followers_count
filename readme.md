@@ -26,6 +26,8 @@ in order to get the followers count make the POST request with the payload
 }
 
 ```
+`social_media_name` option can be "instagram", "twitch", "tiktok" or "twitter"
+
 You will receive the response like:
 ```
 {
