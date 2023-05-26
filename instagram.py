@@ -3,7 +3,7 @@ from instaloader import Instaloader, Profile
 
 class Instagram:
     def __init__(self):
-        USERNAME = "andrii_garden_experience"
+        USERNAME = "PUT YOUR USERNAME HERE"
         self.instaloader = Instaloader()
         self.instaloader.load_session_from_file(USERNAME, filename='session-andrii_garden_experience')
 
